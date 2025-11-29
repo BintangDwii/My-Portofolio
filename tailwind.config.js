@@ -1,0 +1,82 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./*.html"],
+  theme: {
+    extend: {
+      colors: {
+         darkBg: '#0F172A',
+        primary: '#2A4365',
+        secondary: '#3182CE',
+        accent: '#63B3ED',
+        dark: '#1A202C',
+        darkText: '#E2E8F0',
+        darkCard: '#2D3748',
+        light: '#F7FAFC',
+        gray: {
+          100: '#F7FAFC',
+          200: '#EDF2F7',
+          300: '#E2E8F0',
+          600: '#718096',
+          700: '#4A5568',
+          800: '#2D3748',
+          900: '#1A202C',
+        },
+        success: '#48BB78',
+      },
+      fontFamily: {
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.8s ease-in-out',
+        'slide-up': 'slideUp 0.6s ease-out',
+        'pulse-slow': 'pulse 3s infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        slideUp: {
+          from: { 
+            opacity: '0',
+            transform: 'translateY(30px)',
+          },
+          to: { 
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+      },
+    },
+  },
+  plugins: [],
+  darkMode: 'class',
+  safelist: [
+    'tech-ring',
+    'gradient-border',
+    'gradient-text',
+    'section-padding',
+    'card-hover',
+    'hamburger-line',
+    'top-line',
+    'middle-line',
+    'bottom-line',
+    'hamburger-active',
+    'mobile-menu-active',
+    'nav-link',
+    'nav-underline',
+    'mobile-nav-link',
+    'skill-bar',
+    'skill-progress',
+    'cta-btn-primary',
+    'cta-btn-secondary',
+    'typing-animation',
+    'float-animation',
+    'particles',
+    'particle',
+    'glow-effect',
+    'text-shadow',
+    'back-to-top',
+    'section-header',
+  ],
+}
