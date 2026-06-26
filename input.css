@@ -301,6 +301,32 @@
   html.dark .border-border\/50 { border-color: rgba(51,51,51,0.5); }
   html.dark .glass { background: rgba(30,30,30,0.85); }
   html.dark .glass-card { background: rgba(40,40,40,0.6); }
+  /* Custom utility classes referencing var(--color-*) */
+  html.dark .section-label { color: #999; }
+  html.dark .section-heading { color: #e5e5e5; }
+  html.dark .stat-number { color: #e5e5e5; }
+  html.dark .stat-label { color: #999; }
+  html.dark .pill { color: #999; border-color: #333; }
+  html.dark .pill:hover { color: #e5e5e5; border-color: #e5e5e5; }
+  html.dark .arrow-circle { background: #e5e5e5; color: #1a1a1a; }
+  html.dark .active-section { color: #e5e5e5 !important; }
+  html.dark .timeline-dot { background: #e5e5e5; color: #1a1a1a; }
+  html.dark .project-thumb { background-color: #2a2a2a; color: #999; }
+  html.dark .blog-card-img { background-color: #2a2a2a; color: #999; }
+  html.dark .stat-card { background: #1e1e1e; border-color: #333; }
+  html.dark .nav-link { color: #999; }
+  html.dark .nav-link:hover { color: #e5e5e5; }
+  html.dark #menu-btn span { background-color: #e5e5e5; }
+  html.dark #back-to-top { background-color: #e5e5e5; color: #1a1a1a; }
+  html.dark #back-to-top:hover { background-color: #ccc; }
+  html.dark #contact-form button[type="submit"] { background-color: #e5e5e5; color: #1a1a1a; }
+  html.dark #contact-form button[type="submit"]:hover { background-color: #ccc; }
+  html.dark input,
+  html.dark textarea { background-color: #2a2a2a !important; border-color: #444 !important; color: #e5e5e5 !important; }
+  html.dark input:focus,
+  html.dark textarea:focus { border-color: #e5e5e5 !important; }
+  html.dark input::placeholder,
+  html.dark textarea::placeholder { color: #666 !important; }
 
   .timeline-line {
     position: absolute;
