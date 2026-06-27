@@ -127,21 +127,29 @@
     <!-- Hero Section -->
     <section id="hero" class="pt-32 pb-20 px-6">
       <div class="max-w-[1200px] mx-auto">
-        <div class="bg-tertiary card-rounded-lg p-8 md:p-14">
-          <div class="grid md:grid-cols-12 gap-10 items-center">
+        <div class="bg-tertiary card-rounded-lg p-8 md:p-14 md:pr-0 border border-border/40 shadow-sm">
+          <div class="grid md:grid-cols-12 gap-8 items-center">
             <!-- Left: Details -->
             <div class="md:col-span-7">
-              <h1 class="section-heading mb-2" data-animate="fadeInUp" data-delay="100">Fullstack Rust Engineer</h1>
-              <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-primary mb-1">Hello</h2>
-              <p class="text-xl md:text-2xl text-secondary max-w-lg" data-animate="fadeInUp" data-delay="200">
+              <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-1 animate-fadeInUp bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Hello</h1>
+              <h2 class="section-heading mb-1" data-animate="fadeInUp" data-delay="100">Fullstack Rust Engineer</h2>
+              <p class="text-xl md:text-2xl text-secondary max-w-lg" data-animate="fadeInUp" data-delay="150">
                 I'm Bintang, a Fullstack Rust Engineer
               </p>
+              <!-- Tech pills -->
+              <div class="flex flex-wrap gap-2 mt-6" data-animate="fadeInUp" data-delay="200">
+                <span class="pill text-xs hover-lift">Rust</span>
+                <span class="pill text-xs hover-lift">Leptos</span>
+                <span class="pill text-xs hover-lift">Actix Web</span>
+                <span class="pill text-xs hover-lift">PostgreSQL</span>
+                <span class="pill text-xs hover-lift">WebAssembly</span>
+              </div>
               <div class="flex flex-wrap gap-4 mt-8 mb-8">
-                <div class="stat-card glass-card hover-lift" data-animate="scaleIn" data-delay="200">
-                  <div class="stat-number">+18</div>
-                  <div class="stat-label">Age</div>
-                </div>
                 <div class="stat-card glass-card hover-lift" data-animate="scaleIn" data-delay="300">
+                  <div class="stat-number">+5</div>
+                  <div class="stat-label">Technologies Mastered</div>
+                </div>
+                <div class="stat-card glass-card hover-lift" data-animate="scaleIn" data-delay="350">
                   <div class="stat-number">+3</div>
                   <div class="stat-label">Fullstack Projects</div>
                 </div>
@@ -150,19 +158,24 @@
                   <div class="stat-label">Year Building Systems</div>
                 </div>
               </div>
-              <div class="flex flex-wrap items-center gap-4">
-                <a href="mailto:bintang925@gmail.com" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary border-b border-primary pb-0.5 hover:opacity-70 transition">
-                  Book A Call <span class="text-base leading-none">&nearr;</span>
+              <div class="flex flex-wrap items-center gap-4" data-animate="fadeInUp" data-delay="450">
+                <a href="mailto:bintang925@gmail.com" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary border border-primary rounded-full px-6 py-2.5 hover:bg-primary hover:text-white transition hover-lift">
+                  Book A Call <span class="text-base leading-none ml-1">&nearr;</span>
                 </a>
-                <a href="asset/cv%20bintang.jpeg" download="Bintang_Dwi_Permana_CV.jpeg" class="inline-flex items-center gap-2 text-sm font-medium text-white bg-primary rounded-full px-5 py-2.5 hover:bg-[#333] transition hover-lift">
+                <a href="asset/cv%20bintang.jpeg" download="Bintang_Dwi_Permana_CV.jpeg" class="inline-flex items-center gap-2 text-sm font-medium text-white bg-primary rounded-full px-6 py-2.5 hover:bg-[#333] transition hover-lift">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                   Download CV
                 </a>
               </div>
             </div>
             <!-- Right: Profile Image -->
-            <div class="md:col-span-5" data-animate="scaleIn" data-delay="300">
-              <img src="asset/bintang_hero_section-removebg.png" alt="Bintang Dwi Permana" class="w-full h-auto object-contain drop-shadow-xl" fetchpriority="high" />
+            <div class="md:col-span-5 relative aspect-square" data-animate="scaleIn" data-delay="300">
+              <div class="absolute inset-0 overflow-hidden rounded-full">
+                <div class="absolute top-1/4 left-1/4 w-3/4 h-3/4 bg-gradient-to-br from-primary/[0.06] to-transparent rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-secondary/[0.04] to-transparent rounded-full blur-3xl animate-float" style="animation-delay: -2s"></div>
+                <div class="absolute top-1/2 left-1/3 w-1/3 h-1/3 bg-gradient-to-tr from-primary/[0.03] to-transparent rounded-full blur-2xl animate-float" style="animation-delay: -3.5s"></div>
+              </div>
+              <img src="asset/bintang_hero_section-removebg.png" alt="Bintang Dwi Permana" class="relative z-10 w-full h-full object-cover drop-shadow-xl" fetchpriority="high" />
             </div>
           </div>
         </div>
