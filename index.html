@@ -9,7 +9,7 @@
   <meta property="og:description" content="18-year-old Fullstack Rust Engineer building fast, reliable web apps with Rust, Leptos, Actix Web, and PostgreSQL." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bintang.dev" />
-  <meta property="og:image" content="https://bintang.dev/og.png" />
+  <meta property="og:image" content="https://bintang.dev/asset/profile%201.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Bintang Dwi Permana · Fullstack Rust Engineer" />
   <meta name="twitter:description" content="Building fast, reliable web applications with Rust, Leptos, and PostgreSQL." />
@@ -18,8 +18,41 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="output.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bintang Dwi Permana",
+    "givenName": "Bintang",
+    "familyName": "Dwi Permana",
+    "jobTitle": "Fullstack Rust Engineer",
+    "image": "https://bintang.dev/asset/profile%201.png",
+    "url": "https://bintang.dev",
+    "sameAs": [
+      "https://github.com/BintangDwii",
+      "https://www.linkedin.com/in/bintang-dwi-permana-5b8516351/"
+    ],
+    "email": "bintang925@gmail.com",
+    "knowsAbout": ["Rust", "Leptos", "Actix Web", "Axum", "PostgreSQL", "SQLx", "WebAssembly", "TailwindCSS"],
+    "nationality": "Indonesia",
+    "age": "18"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bintang Dwi Permana · Fullstack Rust Engineer",
+    "url": "https://bintang.dev",
+    "description": "Fullstack Rust Engineer portfolio — building fast, reliable, and maintainable web applications.",
+    "author": { "@type": "Person", "name": "Bintang Dwi Permana" }
+  }
+  </script>
 </head>
 <body class="font-sans text-primary bg-white antialiased select-none">
+
+  <!-- Scroll Progress Bar -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-0.5 bg-primary z-[100] origin-left scale-x-0 transition-transform duration-150 ease-out"></div>
 
   <!-- Navbar -->
   <header id="navbar" class="sticky top-0 w-full z-50 transition-all duration-300 md:top-4 md:w-[calc(100%-2rem)] md:max-w-[1200px] md:mx-auto md:rounded-full">
@@ -31,6 +64,8 @@
         <a href="#projects" class="nav-link px-4 py-2 text-sm text-secondary hover:text-primary transition">Projects</a>
         <a href="#experience" class="nav-link px-4 py-2 text-sm text-secondary hover:text-primary transition">Experience</a>
         <a href="#blog" class="nav-link px-4 py-2 text-sm text-secondary hover:text-primary transition">Blog</a>
+        <a href="#resume" class="nav-link px-4 py-2 text-sm text-secondary hover:text-primary transition">Resume</a>
+        <a href="#faq" class="nav-link px-4 py-2 text-sm text-secondary hover:text-primary transition">FAQ</a>
       </nav>
       <div class="flex items-center gap-2">
         <button id="theme-toggle" class="hidden md:flex w-8 h-8 items-center justify-center text-secondary hover:text-primary transition" aria-label="Toggle theme">
@@ -65,6 +100,8 @@
       <a href="#projects" class="drawer-link block py-3 text-base text-secondary hover:text-primary transition font-medium">Projects</a>
       <a href="#experience" class="drawer-link block py-3 text-base text-secondary hover:text-primary transition font-medium">Experience</a>
       <a href="#blog" class="drawer-link block py-3 text-base text-secondary hover:text-primary transition font-medium">Blog</a>
+      <a href="#resume" class="drawer-link block py-3 text-base text-secondary hover:text-primary transition font-medium">Resume</a>
+      <a href="#faq" class="drawer-link block py-3 text-base text-secondary hover:text-primary transition font-medium">FAQ</a>
     </nav>
     <div class="px-6 py-6 border-t border-border/50 space-y-3">
       <a href="mailto:bintang925@gmail.com" class="inline-flex items-center gap-2 text-sm font-medium text-primary text-base">
@@ -91,12 +128,11 @@
     <section id="hero" class="pt-32 pb-20 px-6">
       <div class="max-w-[1200px] mx-auto">
         <div class="bg-tertiary card-rounded-lg p-8 md:p-14">
-          <p class="section-label" data-animate="fadeInUp">Design start here..</p>
           <div class="grid md:grid-cols-12 gap-10 items-center">
             <!-- Left: Details -->
             <div class="md:col-span-7">
-              <h1 class="section-heading mb-6" data-animate="fadeInUp" data-delay="100">Fullstack Rust Portfolio</h1>
-              <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-primary mb-2 animate-float">Hello</h2>
+              <h1 class="section-heading mb-2" data-animate="fadeInUp" data-delay="100">Fullstack Rust Engineer</h1>
+              <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-primary mb-1">Hello</h2>
               <p class="text-xl md:text-2xl text-secondary max-w-lg" data-animate="fadeInUp" data-delay="200">
                 I'm Bintang, a Fullstack Rust Engineer
               </p>
@@ -114,17 +150,19 @@
                   <div class="stat-label">Year Building Systems</div>
                 </div>
               </div>
-              <a href="mailto:bintang925@gmail.com" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary border-b border-primary pb-0.5 hover:opacity-70 transition">
-                Book A Call <span class="text-base leading-none">&nearr;</span>
-              </a>
+              <div class="flex flex-wrap items-center gap-4">
+                <a href="mailto:bintang925@gmail.com" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary border-b border-primary pb-0.5 hover:opacity-70 transition">
+                  Book A Call <span class="text-base leading-none">&nearr;</span>
+                </a>
+                <a href="asset/cv%20bintang.jpeg" download="Bintang_Dwi_Permana_CV.jpeg" class="inline-flex items-center gap-2 text-sm font-medium text-white bg-primary rounded-full px-5 py-2.5 hover:bg-[#333] transition hover-lift">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download CV
+                </a>
+              </div>
             </div>
             <!-- Right: Profile Image -->
             <div class="md:col-span-5" data-animate="scaleIn" data-delay="300">
-              <div class="aspect-square bg-soft card-rounded-lg flex items-center justify-center text-secondary text-sm overflow-hidden hover-lift">
-                <div class="w-full h-full bg-gradient-to-br from-soft to-border">
-                  <img src="asset/profile%201.png" alt="Bintang Dwi Permana" class="w-full h-full object-cover" />
-                </div>
-              </div>
+              <img src="asset/bintang_hero_section-removebg.png" alt="Bintang Dwi Permana" class="w-full h-auto object-contain drop-shadow-xl" fetchpriority="high" />
             </div>
           </div>
         </div>
@@ -138,13 +176,13 @@
           <!-- Left Column -->
           <div class="md:col-span-5" data-animate="fadeInUp" data-delay="100">
             <p class="section-label">About Me</p>
-            <h2 class="section-heading mb-6">About Me</h2>
-            <p class="text-secondary leading-relaxed text-balance">
+            <h2 class="section-heading mb-12">About Me</h2>
+            <p class="text-secondary leading-relaxed text-balance body-large">
               I'm Bintang Dwi Permana, an 18-year-old Fullstack Rust Engineer from Indonesia. I build fast, reliable, and maintainable web applications using Rust across the backend and frontend. My focus is clean architecture, scalable systems, and polished user experiences.
             </p>
             <!-- Developer image -->
             <div class="mt-8 w-full aspect-[4/3] bg-soft card-rounded overflow-hidden hover-glow">
-              <img src="asset/profile%201.png" alt="Bintang Dwi Permana" class="w-full h-full object-cover" />
+              <img src="asset/profile%201.png" alt="Bintang Dwi Permana" class="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
 
@@ -154,12 +192,12 @@
               <div class="text-5xl md:text-6xl font-bold text-primary leading-none animate-float">120%</div>
               <p class="text-sm text-secondary mt-3 max-w-[160px] mx-auto">Growth mindset in every project</p>
             </div>
-            <div class="bg-soft card-rounded aspect-[4/3] flex items-center justify-center text-secondary text-sm hover-glow">
-              <svg class="w-16 h-16 text-border/60" fill="none" viewBox="0 0 200 200" stroke="currentColor" stroke-width="1.2">
-                <rect x="30" y="20" width="140" height="100" rx="6"/>
-                <circle cx="100" cy="150" r="30"/>
-                <path d="M60 190c0-15 18-25 40-25s40 10 40 25"/>
-              </svg>
+            <div class="bg-soft card-rounded aspect-[4/3] flex flex-col items-center justify-center text-center p-6 hover-glow glass-card">
+              <span class="text-4xl font-bold text-primary leading-none">18</span>
+              <span class="text-xs text-secondary mt-2 tracking-widest uppercase">years old</span>
+              <span class="w-8 h-px bg-border my-3"></span>
+              <span class="text-sm text-primary font-medium">Fullstack Rust Engineer</span>
+              <span class="text-xs text-secondary mt-1">from Indonesia</span>
             </div>
           </div>
 
@@ -253,7 +291,7 @@
         <div class="grid md:grid-cols-12 gap-10">
           <div class="md:col-span-5" data-animate="fadeInUp">
             <p class="section-label"><span class="inline-block w-2 h-2 rounded-full bg-primary mr-1"></span> Experiences</p>
-            <h2 class="section-heading mb-6">Explore My Engineering Journey</h2>
+            <h2 class="section-heading mb-12">Explore My Engineering Journey</h2>
           </div>
           <div class="md:col-span-7">
             <p class="text-secondary leading-relaxed text-balance mb-10" data-animate="fadeInUp" data-delay="100">
@@ -268,7 +306,7 @@
                 </div>
                 <div class="flex-1 pt-1">
                   <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-                    <h3 class="text-base font-semibold text-primary">Fullstack Rust Engineer</h3>
+                    <h3 class="text-base md:text-lg font-semibold text-primary">Fullstack Rust Engineer</h3>
                     <span class="text-xs text-secondary">2024 &mdash; Present</span>
                   </div>
                   <p class="text-sm text-secondary mb-3 leading-relaxed">
@@ -287,7 +325,7 @@
                 </div>
                 <div class="flex-1 pt-1">
                   <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-                    <h3 class="text-base font-semibold text-primary">Backend System Builder</h3>
+                    <h3 class="text-base md:text-lg font-semibold text-primary">Backend System Builder</h3>
                     <span class="text-xs text-secondary">2024 &mdash; Present</span>
                   </div>
                   <p class="text-sm text-secondary mb-3 leading-relaxed">
@@ -306,7 +344,7 @@
                 </div>
                 <div class="flex-1 pt-1">
                   <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-                    <h3 class="text-base font-semibold text-primary">Frontend WASM Developer</h3>
+                    <h3 class="text-base md:text-lg font-semibold text-primary">Frontend WASM Developer</h3>
                     <span class="text-xs text-secondary">2024 &mdash; Present</span>
                   </div>
                   <p class="text-sm text-secondary mb-3 leading-relaxed">
@@ -324,7 +362,7 @@
                 </div>
                 <div class="flex-1 pt-1">
                   <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-                    <h3 class="text-base font-semibold text-primary">Linux Power User</h3>
+                    <h3 class="text-base md:text-lg font-semibold text-primary">Linux Power User</h3>
                     <span class="text-xs text-secondary">2023 &mdash; Present</span>
                   </div>
                   <p class="text-sm text-secondary mb-3 leading-relaxed">
@@ -366,6 +404,38 @@
       </div>
     </section>
 
+    <!-- Resume Section -->
+    <section id="resume" class="py-24 px-6">
+      <div class="max-w-[1200px] mx-auto">
+        <p class="section-label" data-animate="fadeInUp"><span class="inline-block w-2 h-2 rounded-full bg-primary mr-1"></span> Resume</p>
+        <h2 class="section-heading mb-12" data-animate="fadeInUp" data-delay="100">My Resume / CV</h2>
+        <div class="grid md:grid-cols-5 gap-10 items-start" data-animate="fadeInUp" data-delay="200">
+          <div class="md:col-span-3">
+            <div class="glass-card card-rounded-lg overflow-hidden hover-lift cursor-pointer" id="resume-preview">
+              <img src="asset/cv%20bintang.jpeg" alt="Bintang Dwi Permana CV" class="w-full h-auto object-cover" loading="lazy" />
+            </div>
+          </div>
+          <div class="md:col-span-2 space-y-6">
+            <div class="glass-card card-rounded p-6">
+              <p class="text-xs font-semibold text-primary mb-2">Download</p>
+              <a href="asset/cv%20bintang.jpeg" download="Bintang_Dwi_Permana_CV.jpeg" class="inline-flex items-center gap-2 text-sm font-medium text-white bg-primary rounded-full px-6 py-3 hover:bg-[#333] transition hover-lift w-full justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CV
+              </a>
+            </div>
+            <div class="glass-card card-rounded p-6">
+              <p class="text-xs font-semibold text-primary mb-1">Format</p>
+              <p class="text-sm text-secondary">JPEG &middot; 1 page</p>
+            </div>
+            <div class="glass-card card-rounded p-6">
+              <p class="text-xs font-semibold text-primary mb-1">Last Updated</p>
+              <p class="text-sm text-secondary"><span id="cv-year"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Banner -->
     <section class="py-24 px-6">
       <div class="max-w-[1200px] mx-auto">
@@ -373,7 +443,7 @@
           <div class="absolute inset-0 opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2LTRoNHY0aC00em0wLTh2LTRoNHY0aC00em0tOCA4di00aDR2NGgtNHptMC04di00aDR2NGgtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] bg-repeat"></div>
           <div class="relative z-10">
             <p class="text-sm text-white/60 mb-3">(Available for Remote Collaboration)</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Need a Rust Fullstack Developer?</h2>
+            <h2 class="section-heading text-white mb-4">Need a Rust Fullstack Developer?</h2>
             <p class="text-white/70 max-w-xl mx-auto mb-8 text-balance leading-relaxed">
               Let's build fast, scalable, and maintainable software with clean architecture and production-ready engineering.
             </p>
@@ -396,11 +466,11 @@
             <!-- Project 1 -->
             <div class="bg-white border border-border card-rounded overflow-hidden group hover-lift cursor-pointer project-card" data-index="0">
               <div class="project-thumb rounded-none overflow-hidden">
-                <img src="asset/eccomerce%20project%20.png" alt="BellBell E-Commerce Platform" class="w-full h-full object-cover" />
+                <img src="asset/eccomerce%20project%20.png" alt="BellBell E-Commerce Platform" class="w-full h-full object-cover" loading="lazy" />
               </div>
               <div class="p-6">
                 <span class="text-xs text-secondary font-medium">Rust Fullstack</span>
-                <h3 class="text-lg font-semibold text-primary mt-1 mb-2">BellBell E-Commerce Platform</h3>
+                <h3 class="text-lg font-semibold text-primary mt-1 mb-2 tracking-tight">BellBell E-Commerce Platform</h3>
                 <p class="text-sm text-secondary leading-relaxed mb-4">
                   Premium e-commerce platform built with Leptos, Actix Web, PostgreSQL, JWT authentication, and Midtrans payment integration.
                 </p>
@@ -410,11 +480,11 @@
             <!-- Project 2 -->
             <div class="bg-white border border-border card-rounded overflow-hidden group hover-lift cursor-pointer project-card" data-index="1">
               <div class="project-thumb rounded-none overflow-hidden">
-                <img src="asset/Hotel%20project.png" alt="Hotel Management System" class="w-full h-full object-cover" />
+                <img src="asset/Hotel%20project.png" alt="Hotel Management System" class="w-full h-full object-cover" loading="lazy" />
               </div>
               <div class="p-6">
                 <span class="text-xs text-secondary font-medium">Hospitality SaaS</span>
-                <h3 class="text-lg font-semibold text-primary mt-1 mb-2">Hotel Management System</h3>
+                <h3 class="text-lg font-semibold text-primary mt-1 mb-2 tracking-tight">Hotel Management System</h3>
                 <p class="text-sm text-secondary leading-relaxed mb-4">
                   Fullstack hotel booking and admin dashboard system with bookings, guest sessions, payment tracking, analytics, and authorization panel.
                 </p>
@@ -424,11 +494,11 @@
             <!-- Project 3 -->
             <div class="bg-white border border-border card-rounded overflow-hidden group hover-lift cursor-pointer project-card" data-index="2">
               <div class="project-thumb rounded-none overflow-hidden">
-                <img src="asset/Banking%20sistem%20.jpeg" alt="Banking App Dashboard" class="w-full h-full object-cover" />
+                <img src="asset/Banking%20sistem%20.jpeg" alt="Banking App Dashboard" class="w-full h-full object-cover" loading="lazy" />
               </div>
               <div class="p-6">
                 <span class="text-xs text-secondary font-medium">Fintech UI</span>
-                <h3 class="text-lg font-semibold text-primary mt-1 mb-2">Banking App Dashboard</h3>
+                <h3 class="text-lg font-semibold text-primary mt-1 mb-2 tracking-tight">Banking App Dashboard</h3>
                 <p class="text-sm text-secondary leading-relaxed mb-4">
                   Banking-inspired application with balance dashboard, transaction history, transfer simulation, QR payment, analytics, and CSV export.
                 </p>
@@ -438,11 +508,11 @@
             <!-- Project 4 -->
             <div class="bg-white border border-border card-rounded overflow-hidden group hover-lift cursor-pointer project-card" data-index="3">
               <div class="project-thumb rounded-none overflow-hidden">
-                <img src="asset/Ai%20local%20chat%20for%20real%20project.png" alt="AI Agent Chat Application" class="w-full h-full object-cover" />
+                <img src="asset/Ai%20local%20chat%20for%20real%20project.png" alt="AI Agent Chat Application" class="w-full h-full object-cover" loading="lazy" />
               </div>
               <div class="p-6">
                 <span class="text-xs text-secondary font-medium">AI &middot; Rust</span>
-                <h3 class="text-lg font-semibold text-primary mt-1 mb-2">AI Agent Chat Application</h3>
+                <h3 class="text-lg font-semibold text-primary mt-1 mb-2 tracking-tight">AI Agent Chat Application</h3>
                 <p class="text-sm text-secondary leading-relaxed mb-4">
                   AI Agent with Intent Detection, Planning, Execution, and Response pipeline. Supports file operations, code search, safe command execution, and pattern-based refactoring.
                 </p>
@@ -452,11 +522,11 @@
             <!-- Project 5 -->
             <div class="bg-white border border-border card-rounded overflow-hidden group hover-lift cursor-pointer project-card" data-index="4">
               <div class="project-thumb rounded-none overflow-hidden">
-                <img src="asset/Restaurant%20ordering%20sistem.png" alt="Restaurant Ordering Platform" class="w-full h-full object-cover" />
+                <img src="asset/Restaurant%20ordering%20sistem.png" alt="Restaurant Ordering Platform" class="w-full h-full object-cover" loading="lazy" />
               </div>
               <div class="p-6">
                 <span class="text-xs text-secondary font-medium">Fullstack Rust</span>
-                <h3 class="text-lg font-semibold text-primary mt-1 mb-2">Restaurant Ordering Platform</h3>
+                <h3 class="text-lg font-semibold text-primary mt-1 mb-2 tracking-tight">Restaurant Ordering Platform</h3>
                 <p class="text-sm text-secondary leading-relaxed mb-4">
                   Full-stack restaurant ordering platform with menu browsing, order placement, account management, admin features, and real-time payments via Midtrans.
                 </p>
@@ -489,40 +559,116 @@
           <!-- Blog 1 -->
           <div class="border border-border card-rounded overflow-hidden group hover-lift cursor-pointer blog-card" data-animate="fadeInUp" data-delay="100" data-index="0">
             <div class="blog-card-img rounded-none overflow-hidden">
-              <img src="asset/Why%20Rust%20is%20powerful%20for%20fullstack%20systems%201.png" alt="Why Rust is powerful for fullstack systems" class="w-full h-full object-cover" />
+              <img src="asset/Why%20Rust%20is%20powerful%20for%20fullstack%20systems%201.png" alt="Why Rust is powerful for fullstack systems" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-6">
               <div class="flex items-center gap-3 mb-3">
                 <span class="text-xs font-semibold text-primary">RUST</span>
                 <span class="text-xs text-secondary">5 min read</span>
               </div>
-              <h3 class="text-base font-semibold text-primary leading-snug">Why Rust is powerful for fullstack systems</h3>
+              <h3 class="text-base font-semibold text-primary leading-snug tracking-tight">Why Rust is powerful for fullstack systems</h3>
             </div>
           </div>
           <!-- Blog 2 -->
           <div class="border border-border card-rounded overflow-hidden group hover-lift cursor-pointer blog-card" data-animate="fadeInUp" data-delay="200" data-index="1">
             <div class="blog-card-img rounded-none overflow-hidden">
-              <img src="asset/Designing%20clean%20APIs%20with%20PostgreSQL%20and%20SQLx%202%20.png" alt="Designing clean APIs with PostgreSQL and SQLx" class="w-full h-full object-cover" />
+              <img src="asset/Designing%20clean%20APIs%20with%20PostgreSQL%20and%20SQLx%202%20.png" alt="Designing clean APIs with PostgreSQL and SQLx" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-6">
               <div class="flex items-center gap-3 mb-3">
                 <span class="text-xs font-semibold text-primary">BACKEND</span>
                 <span class="text-xs text-secondary">6 min read</span>
               </div>
-              <h3 class="text-base font-semibold text-primary leading-snug">Designing clean APIs with PostgreSQL and SQLx</h3>
+              <h3 class="text-base font-semibold text-primary leading-snug tracking-tight">Designing clean APIs with PostgreSQL and SQLx</h3>
             </div>
           </div>
           <!-- Blog 3 -->
           <div class="border border-border card-rounded overflow-hidden group hover-lift cursor-pointer blog-card" data-animate="fadeInUp" data-delay="300" data-index="2">
             <div class="blog-card-img rounded-none overflow-hidden">
-              <img src="asset/Building%20maintainable%20software%20as%20a%20young%20engineer%203.png" alt="Building maintainable software as a young engineer" class="w-full h-full object-cover" />
+              <img src="asset/Building%20maintainable%20software%20as%20a%20young%20engineer%203.png" alt="Building maintainable software as a young engineer" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-6">
               <div class="flex items-center gap-3 mb-3">
                 <span class="text-xs font-semibold text-primary">ARCHITECTURE</span>
                 <span class="text-xs text-secondary">7 min read</span>
               </div>
-              <h3 class="text-base font-semibold text-primary leading-snug">Building maintainable software as a young engineer</h3>
+              <h3 class="text-base font-semibold text-primary leading-snug tracking-tight">Building maintainable software as a young engineer</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-6">
+      <div class="max-w-[1200px] mx-auto">
+        <p class="section-label" data-animate="fadeInUp"><span class="inline-block w-2 h-2 rounded-full bg-primary mr-1"></span> FAQ</p>
+        <h2 class="section-heading mb-12" data-animate="fadeInUp" data-delay="100">Frequently Asked Questions</h2>
+        <div class="max-w-[800px] mx-auto space-y-3" data-animate="fadeInUp" data-delay="200">
+          <div class="faq-item border border-border/50 card-rounded-sm overflow-hidden">
+            <button class="faq-question w-full flex items-center justify-between p-5 md:px-6 text-left text-sm font-medium text-primary hover:bg-soft/30 transition">
+              <span>What tech stack do you specialize in?</span>
+              <svg class="faq-icon w-4 h-4 text-secondary transition-transform duration-300 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-secondary leading-relaxed">
+                I specialize in Rust, Leptos, Actix Web, Axum, PostgreSQL, SQLx, WebAssembly, TailwindCSS, Docker, and Linux.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item border border-border/50 card-rounded-sm overflow-hidden">
+            <button class="faq-question w-full flex items-center justify-between p-5 md:px-6 text-left text-sm font-medium text-primary hover:bg-soft/30 transition">
+              <span>Are you available for freelance or contract work?</span>
+              <svg class="faq-icon w-4 h-4 text-secondary transition-transform duration-300 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-secondary leading-relaxed">
+                Yes, I'm open for freelance and remote collaboration globally. I'm currently accepting new projects and providing development services.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item border border-border/50 card-rounded-sm overflow-hidden">
+            <button class="faq-question w-full flex items-center justify-between p-5 md:px-6 text-left text-sm font-medium text-primary hover:bg-soft/30 transition">
+              <span>How can I hire or contact you?</span>
+              <svg class="faq-icon w-4 h-4 text-secondary transition-transform duration-300 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-secondary leading-relaxed">
+                You can email me at <a href="mailto:bintang925@gmail.com" class="text-primary underline underline-offset-2 hover:opacity-70 transition">bintang925@gmail.com</a> or use the contact form above. I typically respond within 24 hours.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item border border-border/50 card-rounded-sm overflow-hidden">
+            <button class="faq-question w-full flex items-center justify-between p-5 md:px-6 text-left text-sm font-medium text-primary hover:bg-soft/30 transition">
+              <span>Do you work with clients outside Indonesia?</span>
+              <svg class="faq-icon w-4 h-4 text-secondary transition-transform duration-300 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-secondary leading-relaxed">
+                Absolutely. I'm comfortable working across time zones using async communication tools like email, Discord, and Telegram.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item border border-border/50 card-rounded-sm overflow-hidden">
+            <button class="faq-question w-full flex items-center justify-between p-5 md:px-6 text-left text-sm font-medium text-primary hover:bg-soft/30 transition">
+              <span>What is your development process like?</span>
+              <svg class="faq-icon w-4 h-4 text-secondary transition-transform duration-300 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-secondary leading-relaxed">
+                Requirement analysis → architecture design → iterative development with regular check-ins → testing → deployment → documentation and handoff.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item border border-border/50 card-rounded-sm overflow-hidden">
+            <button class="faq-question w-full flex items-center justify-between p-5 md:px-6 text-left text-sm font-medium text-primary hover:bg-soft/30 transition">
+              <span>Can you contribute to existing projects?</span>
+              <svg class="faq-icon w-4 h-4 text-secondary transition-transform duration-300 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-secondary leading-relaxed">
+                Yes, I'm comfortable reading existing codebases, contributing new features, fixing bugs, refactoring, and improving performance and code quality.
+              </div>
             </div>
           </div>
         </div>
@@ -590,7 +736,7 @@
     <section class="py-24 px-6">
       <div class="max-w-[1200px] mx-auto">
         <div class="bg-tertiary card-rounded-lg p-10 md:p-16 text-center" data-animate="scaleIn">
-          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 text-balance">Got a Vision? Let's Build It With Rust!</h2>
+          <h2 class="section-heading mb-4 text-balance">Got a Vision? Let's Build It With Rust!</h2>
           <p class="text-secondary max-w-xl mx-auto mb-8 text-balance leading-relaxed">
             I'm always excited to collaborate on meaningful software projects, from backend systems to polished fullstack products.
           </p>
@@ -613,6 +759,7 @@
           <a href="#stack" class="text-white/60 hover:text-white transition hover-glow px-2 py-1 rounded">Stack</a>
           <a href="#projects" class="text-white/60 hover:text-white transition hover-glow px-2 py-1 rounded">Projects</a>
           <a href="#blog" class="text-white/60 hover:text-white transition hover-glow px-2 py-1 rounded">Blog</a>
+          <a href="#faq" class="text-white/60 hover:text-white transition hover-glow px-2 py-1 rounded">FAQ</a>
         </nav>
         <div class="flex items-center gap-6">
           <a href="https://github.com/BintangDwii" target="_blank" rel="noopener" class="text-white/60 hover:text-white transition hover-glow p-2 rounded" aria-label="GitHub">
@@ -625,7 +772,7 @@
       </div>
       <div class="flex flex-col md:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-white/10">
         <div class="text-xs text-white/40 text-center md:text-left">
-          &copy; 2025 Bintang Dwi Permana &middot; Fullstack Rust Engineer
+          &copy; <span id="year"></span> Bintang Dwi Permana &middot; Fullstack Rust Engineer
         </div>
         <a href="mailto:bintang925@gmail.com" class="text-lg md:text-xl font-semibold text-white/80 hover:text-white transition">bintang925@gmail.com</a>
       </div>
@@ -653,6 +800,11 @@
       <img id="lightbox-img" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl" src="" alt="" />
     </div>
     <button id="lightbox-close" class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center text-white/80 hover:text-white transition rounded-full bg-white/10 backdrop-blur-sm text-2xl leading-none">&times;</button>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] px-5 py-3 rounded-full bg-primary text-white text-sm font-medium shadow-lg opacity-0 pointer-events-none transition-all duration-400 translate-y-4 whitespace-nowrap">
+    <span id="toast-msg"></span>
   </div>
 
   <script src="script.js"></script>

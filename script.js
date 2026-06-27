@@ -6,6 +6,9 @@ const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? y / docHeight : 0;
+  if (progressBar) progressBar.style.transform = 'scaleX(' + progress + ')';
 
   if (y > 50) {
     navbar.classList.add('glass', 'shadow-sm');
@@ -40,6 +43,7 @@ backToTop.addEventListener('click', () => {
 const themeToggle = document.getElementById('theme-toggle');
 const sunIcon = themeToggle?.querySelector('.sun-icon');
 const moonIcon = themeToggle?.querySelector('.moon-icon');
+const progressBar = document.getElementById('progress-bar');
 
 function setTheme(dark) {
   if (dark) {
@@ -181,11 +185,33 @@ function openModal(data, type) {
       <h3 class="text-xl font-semibold text-primary mt-1 mb-3">${data.title}</h3>
       <p class="text-sm text-secondary leading-relaxed mb-4">${data.desc}</p>
       <div class="flex flex-wrap gap-2 mb-6">${techTags}</div>
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-3 items-center">
         <a href="${data.github}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary border border-primary rounded-full px-5 py-2 hover:bg-primary hover:text-white transition">View on GitHub &nearr;</a>
-        ${data.demo ? `<a href="${data.demo}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary border border-primary rounded-full px-5 py-2 hover:bg-primary hover:text-white transition">Live Demo &nearr;</a>` : ''}
+        <button class="demo-request-btn inline-flex items-center gap-1.5 text-sm font-medium text-white bg-primary rounded-full px-5 py-2 hover:bg-[#333] transition">Request Demo &nearr;</button>
+      </div>
+      <div class="demo-picker hidden mt-4 p-4 bg-soft card-rounded-sm flex flex-wrap items-center gap-3">
+        <input type="date" class="demo-date-input flex-1 min-w-[160px] px-4 py-2.5 bg-white border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-primary transition" min="${new Date().toISOString().split('T')[0]}" />
+        <button class="demo-send-btn inline-flex items-center gap-1.5 text-sm font-medium text-white bg-primary rounded-full px-5 py-2.5 hover:bg-[#333] transition">Send Request</button>
       </div>
     `;
+    const requestBtn = modalBody.querySelector('.demo-request-btn');
+    const picker = modalBody.querySelector('.demo-picker');
+    const dateInput = modalBody.querySelector('.demo-date-input');
+    const sendBtn = modalBody.querySelector('.demo-send-btn');
+    if (requestBtn && picker) {
+      requestBtn.addEventListener('click', () => picker.classList.toggle('hidden'));
+    }
+    if (sendBtn && dateInput) {
+      sendBtn.addEventListener('click', () => {
+        const date = dateInput.value;
+        if (!date) { dateInput.focus(); return; }
+        const subject = encodeURIComponent('Demo Request: ' + data.title);
+        const body = encodeURIComponent('I would like to request a demo for ' + data.title + '.\n\nPreferred date: ' + date);
+        window.location.href = 'mailto:bintang925@gmail.com?subject=' + subject + '&body=' + body;
+        picker.classList.add('hidden');
+        showToast('Demo request sent! I\'ll get back to you soon.');
+      });
+    }
   } else {
     modalBody.innerHTML = `
       <img src="${data.img}" alt="${data.title}" class="w-full aspect-video object-cover rounded-xl mb-6" />
@@ -243,6 +269,18 @@ const lightboxClose = document.getElementById('lightbox-close');
 lightboxClose?.addEventListener('click', closeLightbox);
 lightbox?.addEventListener('click', (e) => {
   if (e.target === lightbox) closeLightbox();
+});
+
+// Resume preview lightbox
+const resumePreview = document.getElementById('resume-preview');
+resumePreview?.addEventListener('click', function () {
+  const img = this.querySelector('img');
+  if (img) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('lightbox-show');
+    document.body.classList.add('modal-open');
+  }
 });
 
 // Carousel
@@ -372,3 +410,38 @@ const animObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('[data-animate]').forEach(el => {
   animObserver.observe(el);
 });
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('max-h-[300px]');
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('max-h-[300px]'));
+    document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+    if (!isOpen) {
+      answer.classList.add('max-h-[300px]');
+      btn.classList.add('open');
+    }
+  });
+});
+
+// Toast notification
+const toast = document.getElementById('toast');
+const toastMsg = document.getElementById('toast-msg');
+let toastTimer;
+
+function showToast(msg) {
+  if (!toast || !toastMsg) return;
+  clearTimeout(toastTimer);
+  toastMsg.textContent = msg;
+  toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+  toast.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+  }, 3000);
+}
+
+// Dynamic copyright year
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('cv-year').textContent = new Date().getFullYear();

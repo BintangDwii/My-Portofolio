@@ -48,10 +48,10 @@
 
 @layer utilities {
   .section-label {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-secondary);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
     display: inline-flex;
@@ -61,9 +61,9 @@
 
   .section-heading {
     font-size: 2.5rem;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     color: var(--color-primary);
   }
 
@@ -87,6 +87,17 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .body-large {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 768px) {
+    .body-large {
+      font-size: 1.125rem;
+    }
   }
 
   .pill {
@@ -176,7 +187,7 @@
 
   .stat-number {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--color-primary);
     line-height: 1.1;
   }
@@ -284,6 +295,8 @@
   .drawer-open .drawer-link:nth-child(3) { animation-delay: 0.16s; }
   .drawer-open .drawer-link:nth-child(4) { animation-delay: 0.2s; }
   .drawer-open .drawer-link:nth-child(5) { animation-delay: 0.24s; }
+  .drawer-open .drawer-link:nth-child(6) { animation-delay: 0.28s; }
+  .drawer-open .drawer-link:nth-child(7) { animation-delay: 0.32s; }
 
   .active-section {
     color: var(--color-primary) !important;
@@ -319,6 +332,8 @@
   html.dark #menu-btn span { background-color: #e5e5e5; }
   html.dark #back-to-top { background-color: #e5e5e5; color: #1a1a1a; }
   html.dark #back-to-top:hover { background-color: #ccc; }
+  html.dark #progress-bar { background-color: #e5e5e5; }
+  html.dark #toast { background-color: #e5e5e5; color: #1a1a1a; }
   html.dark #contact-form button[type="submit"] { background-color: #e5e5e5; color: #1a1a1a; }
   html.dark #contact-form button[type="submit"]:hover { background-color: #ccc; }
   html.dark input,
@@ -513,6 +528,14 @@
     color: var(--color-secondary);
     font-size: 0.8rem;
   }
+
+  .faq-item {
+    transition: all 0.3s ease;
+  }
+  .faq-item:hover { background: rgba(0,0,0,0.02); }
+  html.dark .faq-item:hover { background: rgba(255,255,255,0.03); }
+  .faq-question.open + .faq-answer { max-height: 300px; }
+  .faq-question.open .faq-icon { transform: rotate(180deg); }
 
   @media (max-width: 768px) {
     .section-heading {
