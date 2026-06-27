@@ -4,6 +4,23 @@ const backToTop = document.getElementById('back-to-top');
 const navLinks = document.querySelectorAll('#navbar .nav-link');
 const sections = document.querySelectorAll('section[id]');
 
+// Email obfuscation
+const emailEncoded = 'ovaghnat925@tznvy.pbz';
+function decodeEmail(str) {
+  return str.replace(/[a-zA-Z]/g, c => String.fromCharCode(c.charCodeAt(0) + (c.toLowerCase() < 'n' ? 13 : -13)));
+}
+const pageLoadTime = Date.now();
+
+document.querySelectorAll('[data-encoded]').forEach(el => {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = 'mailto:' + decodeEmail(this.dataset.encoded);
+  });
+});
+document.querySelectorAll('[data-email-text]').forEach(el => {
+  el.textContent = decodeEmail(el.dataset.emailText);
+});
+
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -207,7 +224,7 @@ function openModal(data, type) {
         if (!date) { dateInput.focus(); return; }
         const subject = encodeURIComponent('Demo Request: ' + data.title);
         const body = encodeURIComponent('I would like to request a demo for ' + data.title + '.\n\nPreferred date: ' + date);
-        window.location.href = 'mailto:bintang925@gmail.com?subject=' + subject + '&body=' + body;
+        window.location.href = 'mailto:' + decodeEmail(emailEncoded) + '?subject=' + subject + '&body=' + body;
         picker.classList.add('hidden');
         showToast('Demo request sent! I\'ll get back to you soon.');
       });
@@ -353,14 +370,16 @@ document.querySelectorAll('.blog-card').forEach(card => {
 const contactForm = document.getElementById('contact-form');
 contactForm?.addEventListener('submit', function (e) {
   e.preventDefault();
+  if (Date.now() - pageLoadTime < 3000) return;
   const btn = this.querySelector('button[type="submit"]');
   const text = btn.innerHTML;
   btn.innerHTML = 'Sending...';
   btn.disabled = true;
   const data = new FormData(this);
+  if (data.get('website')) { btn.innerHTML = text; btn.disabled = false; return; }
   const subject = data.get('subject') || 'Portfolio Contact';
   const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')}`;
-  window.location.href = `mailto:bintang925@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:${decodeEmail(emailEncoded)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   setTimeout(() => {
     btn.innerHTML = text;
     btn.disabled = false;
