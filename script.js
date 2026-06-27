@@ -60,6 +60,9 @@ backToTop.addEventListener('click', () => {
 const themeToggle = document.getElementById('theme-toggle');
 const sunIcon = themeToggle?.querySelector('.sun-icon');
 const moonIcon = themeToggle?.querySelector('.moon-icon');
+const mobileSun = document.querySelector('.sun-icon-mobile');
+const mobileMoon = document.querySelector('.moon-icon-mobile');
+const mobileLabel = document.querySelector('.theme-label');
 const progressBar = document.getElementById('progress-bar');
 
 function setTheme(dark) {
@@ -67,10 +70,16 @@ function setTheme(dark) {
     document.documentElement.classList.add('dark');
     sunIcon?.classList.add('hidden');
     moonIcon?.classList.remove('hidden');
+    mobileSun?.classList.add('hidden');
+    mobileMoon?.classList.remove('hidden');
+    if (mobileLabel) mobileLabel.textContent = 'Dark';
   } else {
     document.documentElement.classList.remove('dark');
     sunIcon?.classList.remove('hidden');
     moonIcon?.classList.add('hidden');
+    mobileSun?.classList.remove('hidden');
+    mobileMoon?.classList.add('hidden');
+    if (mobileLabel) mobileLabel.textContent = 'Light';
   }
 }
 
@@ -80,6 +89,12 @@ if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: d
 }
 
 themeToggle?.addEventListener('click', () => {
+  const isDark = document.documentElement.classList.contains('dark');
+  setTheme(!isDark);
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+});
+
+document.getElementById('theme-toggle-mobile')?.addEventListener('click', () => {
   const isDark = document.documentElement.classList.contains('dark');
   setTheme(!isDark);
   localStorage.setItem('theme', isDark ? 'light' : 'dark');
