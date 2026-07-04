@@ -288,18 +288,6 @@ lightbox?.addEventListener('click', (e) => {
   if (e.target === lightbox) closeLightbox();
 });
 
-// Resume preview lightbox
-const resumePreview = document.getElementById('resume-preview');
-resumePreview?.addEventListener('click', function () {
-  const img = this.querySelector('img');
-  if (img) {
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.add('lightbox-show');
-    document.body.classList.add('modal-open');
-  }
-});
-
 // Carousel
 const projectTrack = document.querySelector('.project-track');
 const prevBtn = document.querySelector('.carousel-prev');
