@@ -187,8 +187,34 @@
       </div>
     </section>
 
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js"></script>
+    <spline-viewer url="https://prod.spline.design/P0q0DwpMM8kBRCXk/scene.splinecode"></spline-viewer>
+    <noscript>Please enable JavaScript</noscript> 
+    <style>
+      spline-viewer::part(logo) { display: none !important; }
+    </style>
+    <script>
+      (function() {
+        const viewer = document.querySelector('spline-viewer');
+        if (!viewer) return;
+        const removeLogo = () => {
+          try {
+            const root = viewer.shadowRoot;
+            if (root) {
+              const logo = root.querySelector('#logo');
+              if (logo) logo.remove();
+            }
+          } catch(e) {}
+        };
+        viewer.addEventListener('load', removeLogo);
+        viewer.addEventListener('ready', removeLogo);
+        customElements.whenDefined('spline-viewer').then(removeLogo);
+        setTimeout(removeLogo, 3000);
+      })();
+    </script>
+
     <!-- About Me Section -->
-    <section id="about" class="py-24 px-6">
+    <section id="about" class="py-24 px-6 -mt-20 relative z-10">
       <div class="max-w-[1200px] mx-auto">
         <div class="grid md:grid-cols-12 gap-8 md:gap-12">
           <!-- Left Column -->
