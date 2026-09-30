@@ -120,8 +120,8 @@ mobileMenu.querySelectorAll('a').forEach(link => {
 const projectsData = [
   {
     title: 'BellBell E-Commerce Platform',
-    tag: 'Rust Fullstack',
-    desc: 'Premium e-commerce platform built with Leptos, Actix Web, PostgreSQL, JWT authentication, and Midtrans payment integration. Features include product listings, cart management, checkout, payment gateway, order tracking, admin dashboard, and user profile management.',
+    tag: 'Rust Web App',
+    desc: 'A personal e-commerce learning project built with Leptos, Actix Web, PostgreSQL, JWT authentication, and Midtrans payment integration. Includes product listings, cart, checkout flow, order tracking demo, and a simple admin dashboard.',
     img: 'asset/eccomerce%20project%20.png',
     tech: ['Leptos', 'Actix Web', 'PostgreSQL', 'JWT', 'Midtrans', 'Redis'],
     github: 'https://github.com/BintangDwii',
@@ -129,8 +129,8 @@ const projectsData = [
   },
   {
     title: 'Hotel Management System',
-    tag: 'Hospitality SaaS',
-    desc: 'Fullstack hotel booking and admin dashboard system with bookings, guest sessions, payment tracking, analytics, and authorization panel. Covers room availability management, check-in/out workflows, billing, reporting, and staff role-based access control.',
+    tag: 'Hotel Booking Demo',
+    desc: 'A demo hotel booking project with room availability, check-in/out flow, billing demo, simple reporting, and a basic admin panel for learning.',
     img: 'asset/Hotel%20project.png',
     tech: ['Leptos', 'Actix Web', 'PostgreSQL', 'JWT', 'Docker'],
     github: 'https://github.com/BintangDwii',
@@ -138,8 +138,8 @@ const projectsData = [
   },
   {
     title: 'Banking App Dashboard',
-    tag: 'Fintech UI',
-    desc: 'Banking-inspired application with balance dashboard, transaction history, transfer simulation, QR payment, analytics, and CSV export. Built with a clean UI, real-time data updates, and modular component architecture.',
+    tag: 'Banking UI Concept',
+    desc: 'A banking UI concept with balance overview, transaction history, transfer simulation, QR payment demo, and CSV export. Built as a frontend learning project with clean components.',
     img: 'asset/Banking%20sistem%20.jpeg',
     tech: ['Leptos', 'WebAssembly', 'PostgreSQL', 'Chart.js', 'CSV Export'],
     github: 'https://github.com/BintangDwii',
@@ -147,8 +147,8 @@ const projectsData = [
   },
   {
     title: 'AI Agent Chat Application',
-    tag: 'AI \u00b7 Rust',
-    desc: 'AI Agent with Intent Detection, Planning, Execution, and Response pipeline. Detects whether the user wants a normal chat or a project action, creates a plan, executes with safety checks, and returns results. Supports file operations (create, edit, delete), safe command execution with restrictions, code search for function/variable usage, and pattern-based code refactoring. Includes API endpoint for agent execution and frontend components like agent toggle, diff viewer, confirmation modal, and action history. Safety features include path validation, command whitelist, user permissions, audit logging, and confirmation for destructive actions.',
+    tag: 'AI · Rust Experiment',
+    desc: 'An experimental local AI chat project with simple intent detection, planning, and safe file/command actions for learning. Includes confirmation for destructive actions, path validation, and basic audit logging.',
     img: 'asset/Ai%20local%20chat%20for%20real%20project.png',
     tech: ['Rust', 'Ollama', 'TypeScript', 'Playwright', 'Cargo', 'npm'],
     github: 'https://github.com/BintangDwii',
@@ -156,35 +156,12 @@ const projectsData = [
   },
   {
     title: 'Restaurant Ordering Platform',
-    tag: 'Fullstack Rust',
-    desc: 'Full-stack restaurant ordering platform built with Leptos 0.8.2 for reactive frontend with SSR/hydration and Actix Web 4 for high-performance backend. Features menu browsing, order placement, account management, real-time payments via Midtrans, and admin panel. Uses Diesel ORM with PostgreSQL, JWT authentication with Bcrypt password hashing, Tailwind CSS for styling, and Playwright for E2E testing. Built with WebAssembly for browser execution.',
+    tag: 'Rust Project',
+    desc: 'A restaurant ordering learning project built with Leptos for frontend and Actix Web for backend. Features menu browsing, order flow, account management, Midtrans payment demo, and a simple admin panel. Uses PostgreSQL, JWT auth, Tailwind CSS, and Playwright for learning E2E testing.',
     img: 'asset/Restaurant%20ordering%20sistem.png',
     tech: ['Leptos', 'Actix Web', 'Diesel', 'PostgreSQL', 'JWT', 'Bcrypt', 'WASM', 'Midtrans', 'Tailwind CSS', 'Playwright'],
     github: 'https://github.com/BintangDwii',
     demo: null
-  }
-];
-const blogsData = [
-  {
-    title: 'Why Rust is powerful for fullstack systems',
-    tag: 'RUST',
-    time: '5 min read',
-    img: 'asset/Why%20Rust%20is%20powerful%20for%20fullstack%20systems%201.png',
-    content: 'Rust offers memory safety, zero-cost abstractions, and fearless concurrency — making it an ideal choice for both backend and frontend development. With frameworks like Actix Web, Axum, and Leptos, you can build end-to-end systems in a single language without sacrificing performance or safety. This article explores how Rust bridges the gap between systems programming and web development.'
-  },
-  {
-    title: 'Designing clean APIs with PostgreSQL and SQLx',
-    tag: 'BACKEND',
-    time: '6 min read',
-    img: 'asset/Designing%20clean%20APIs%20with%20PostgreSQL%20and%20SQLx%202%20.png',
-    content: 'SQLx is an async SQL toolkit for Rust that provides compile-time checked queries and type-safe database interactions. Combined with PostgreSQL, it enables you to design clean, maintainable APIs with robust data validation, migrations, and connection pooling. This post covers schema design, query organization, error handling, and testing strategies.'
-  },
-  {
-    title: 'Building maintainable software as a young engineer',
-    tag: 'ARCHITECTURE',
-    time: '7 min read',
-    img: 'asset/Building%20maintainable%20software%20as%20a%20young%20engineer%203.png',
-    content: 'Starting early with a focus on clean architecture, modular design, and disciplined testing sets the foundation for long-term success in software engineering. This article shares practical lessons on code organization, dependency management, documentation, and continuous learning — all from the perspective of an 18-year-old fullstack engineer.'
   }
 ];
 
@@ -193,10 +170,9 @@ const modalCard = document.getElementById('modal-card');
 const modalBody = document.getElementById('modal-body');
 const modalClose = document.getElementById('modal-close');
 
-function openModal(data, type) {
-  if (type === 'project') {
-    const techTags = data.tech.map(t => `<span class="pill text-xs">${t}</span>`).join('');
-    modalBody.innerHTML = `
+function openModal(data) {
+  const techTags = data.tech.map(t => `<span class="pill text-xs">${t}</span>`).join('');
+  modalBody.innerHTML = `
       <img src="${data.img}" alt="${data.title}" class="w-full aspect-video object-cover rounded-xl mb-6" />
       <span class="text-xs text-secondary font-medium">${data.tag}</span>
       <h3 class="text-xl font-semibold text-primary mt-1 mb-3">${data.title}</h3>
@@ -229,17 +205,6 @@ function openModal(data, type) {
         showToast('Demo request sent! I\'ll get back to you soon.');
       });
     }
-  } else {
-    modalBody.innerHTML = `
-      <img src="${data.img}" alt="${data.title}" class="w-full aspect-video object-cover rounded-xl mb-6" />
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-xs font-semibold text-primary">${data.tag}</span>
-        <span class="text-xs text-secondary">${data.time}</span>
-      </div>
-      <h3 class="text-xl font-semibold text-primary mt-1 mb-3">${data.title}</h3>
-      <p class="text-sm text-secondary leading-relaxed">${data.content}</p>
-    `;
-  }
   const openImg = modalBody.querySelector('img');
   if (openImg) {
     openImg.classList.add('cursor-pointer', 'hover:opacity-80', 'transition-opacity');
@@ -343,14 +308,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
     this.classList.add('selected');
     const idx = parseInt(this.getAttribute('data-index'));
-    if (projectsData[idx]) openModal(projectsData[idx], 'project');
-  });
-});
-
-document.querySelectorAll('.blog-card').forEach(card => {
-  card.addEventListener('click', function () {
-    const idx = parseInt(this.getAttribute('data-index'));
-    if (blogsData[idx]) openModal(blogsData[idx], 'blog');
+    if (projectsData[idx]) openModal(projectsData[idx]);
   });
 });
 
@@ -451,4 +409,3 @@ function showToast(msg) {
 
 // Dynamic copyright year
 document.getElementById('year').textContent = new Date().getFullYear();
-document.getElementById('cv-year').textContent = new Date().getFullYear();
