@@ -1,41 +1,61 @@
-// Navbar scroll effect
+// Navbar scroll effect (rAF-throttled, no layout-thrash)
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('back-to-top');
 const navLinks = document.querySelectorAll('#navbar .nav-link');
 const sections = document.querySelectorAll('section[id]');
+const progressBar = document.getElementById('progress-bar');
 
 const pageLoadTime = Date.now();
 
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
+// Cache section tops to avoid offsetTop reflow on every scroll tick
+let sectionTops = [];
+function cacheSectionTops() {
+  sectionTops = Array.from(sections).map((s) => ({ id: s.getAttribute('id'), top: s.offsetTop - 120 }));
+}
+cacheSectionTops();
+window.addEventListener('resize', cacheSectionTops);
+window.addEventListener('load', cacheSectionTops);
+
+let ticking = false;
+let lastY = 0;
+function updateOnScroll(y) {
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progress = docHeight > 0 ? y / docHeight : 0;
   if (progressBar) progressBar.style.transform = 'scaleX(' + progress + ')';
 
-  if (y > 50) {
-    navbar.classList.add('glass', 'shadow-sm');
-  } else {
-    navbar.classList.remove('glass', 'shadow-sm');
-  }
+  if (navbar) navbar.classList.toggle('glass', y > 50);
+  if (navbar) navbar.classList.toggle('shadow-sm', y > 50);
 
-  if (y > 500) {
-    backToTop.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-    backToTop.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-  } else {
-    backToTop.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-    backToTop.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+  if (backToTop) {
+    const show = y > 500;
+    backToTop.classList.toggle('opacity-0', !show);
+    backToTop.classList.toggle('pointer-events-none', !show);
+    backToTop.classList.toggle('translate-y-4', !show);
+    backToTop.classList.toggle('opacity-100', show);
+    backToTop.classList.toggle('pointer-events-auto', show);
+    backToTop.classList.toggle('translate-y-0', show);
   }
 
   let current = '';
-  sections.forEach(s => {
-    const top = s.offsetTop - 120;
-    if (y >= top) current = s.getAttribute('id');
+  for (let i = 0; i < sectionTops.length; i++) {
+    if (y >= sectionTops[i].top) current = sectionTops[i].id;
+  }
+  navLinks.forEach((link) => {
+    link.classList.toggle('active-section', link.getAttribute('href') === '#' + current);
   });
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    link.classList.toggle('active-section', href === '#' + current);
-  });
-});
+}
+
+window.addEventListener('scroll', () => {
+  lastY = window.scrollY;
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(() => {
+      updateOnScroll(lastY);
+      ticking = false;
+    });
+  }
+}, { passive: true });
+updateOnScroll(window.scrollY || 0);
 
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -48,7 +68,6 @@ const moonIcon = themeToggle?.querySelector('.moon-icon');
 const mobileSun = document.querySelector('.sun-icon-mobile');
 const mobileMoon = document.querySelector('.moon-icon-mobile');
 const mobileLabel = document.querySelector('.theme-label');
-const progressBar = document.getElementById('progress-bar');
 
 function setTheme(dark) {
   if (dark) {
@@ -409,3 +428,89 @@ function showToast(msg) {
 
 // Dynamic copyright year
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Spline 3D: desktop-only lazy-load + pause off-screen (smooth scroll below)
+(function initSplineLite() {
+  const wrap = document.getElementById('spline-wrap');
+  const viewer = document.getElementById('spline-viewer');
+  const fallback = document.getElementById('spline-fallback');
+  if (!wrap || !viewer) return;
+
+  const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  // Pilihan 1: mobile / hemat-data / reduced-motion = jangan pernah load WebGL
+  if (!isDesktop || reducedMotion || saveData) return;
+
+  let scriptLoaded = false;
+  let urlAssigned = false;
+
+  function loadViewerScript() {
+    return new Promise((resolve, reject) => {
+      if (scriptLoaded || customElements.get('spline-viewer')) {
+        scriptLoaded = true;
+        resolve();
+        return;
+      }
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src = 'https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js';
+      s.onload = () => { scriptLoaded = true; resolve(); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function assignUrl() {
+    if (urlAssigned) return;
+    const url = viewer.getAttribute('data-url');
+    if (url && !viewer.getAttribute('url')) {
+      viewer.setAttribute('url', url);
+      urlAssigned = true;
+    }
+  }
+
+  viewer.addEventListener('load', () => {
+    if (fallback) fallback.style.display = 'none';
+    cacheSectionTops();
+  }, { once: true });
+
+  // Load saat mendekati viewport, bukan saat page load
+  const preloadObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadViewerScript().then(assignUrl).catch(() => {});
+        preloadObserver.disconnect();
+      }
+    });
+  }, { rootMargin: '400px 0px' });
+  preloadObserver.observe(wrap);
+
+  // Pause render saat keluar viewport: hentikan compositing WebGL
+  let inView = true;
+  const pauseObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      inView = entry.isIntersecting;
+      // Browser men-throttle canvas off-screen; tambah visibility agar GPU idle
+      wrap.classList.toggle('spline-paused', !inView);
+      try {
+        // Best-effort: beberapa versi viewer expose play/stop
+        if (!inView) {
+          if (typeof viewer.stop === 'function') viewer.stop();
+          else if (typeof viewer.pause === 'function') viewer.pause();
+        } else if (urlAssigned) {
+          if (typeof viewer.play === 'function') viewer.play();
+        }
+      } catch (e) {}
+    });
+  }, { threshold: 0 });
+  pauseObserver.observe(wrap);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden || !inView) {
+      wrap.classList.add('spline-paused');
+    } else {
+      wrap.classList.remove('spline-paused');
+    }
+  });
+})();

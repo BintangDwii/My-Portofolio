@@ -16,6 +16,10 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://prod.spline.design" crossorigin />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://prod.spline.design" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="output.css" />
   <script type="application/ld+json">
@@ -182,34 +186,23 @@
       </div>
     </section>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js"></script>
-    <section class="py-24 px-6">
+    <!-- Spline 3D: desktop-only, lazy-loaded. Mobile = static fallback (no WebGL) -->
+    <section id="spline" class="py-12 md:py-24 px-6">
       <div class="max-w-[1200px] mx-auto">
-        <spline-viewer url="https://prod.spline.design/P0q0DwpMM8kBRCXk/scene.splinecode"></spline-viewer>
-        <noscript>Please enable JavaScript</noscript>
+        <div id="spline-wrap" class="relative overflow-hidden card-rounded-lg border border-border/40 bg-tertiary h-[320px] md:h-[500px]">
+          <!-- Static fallback: shown on mobile + while desktop viewer loads -->
+          <div id="spline-fallback" class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center px-8">
+            <div class="absolute inset-0 opacity-70" style="background: radial-gradient(600px 300px at 30% 20%, rgba(34,34,34,0.08), transparent 60%), radial-gradient(500px 280px at 75% 80%, rgba(123,123,123,0.12), transparent 60%);"></div>
+            <p class="relative text-sm font-semibold text-primary">Interactive 3D</p>
+            <p class="relative text-sm text-secondary max-w-sm">3D preview is disabled on mobile for smooth scrolling. Open on desktop to explore it.</p>
+          </div>
+          <!-- Desktop viewer: url injected lazily by script.js, never loaded on mobile -->
+          <div id="spline-desktop" class="absolute inset-0 hidden md:block">
+            <spline-viewer id="spline-viewer" data-url="https://prod.spline.design/P0q0DwpMM8kBRCXk/scene.splinecode"></spline-viewer>
+          </div>
+          <noscript>Please enable JavaScript</noscript>
+        </div>
       </div>
-      <style>
-        spline-viewer::part(logo) { display: none !important; }
-      </style>
-      <script>
-        (function() {
-          const viewer = document.querySelector('spline-viewer');
-          if (!viewer) return;
-          const removeLogo = () => {
-            try {
-              const root = viewer.shadowRoot;
-              if (root) {
-                const logo = root.querySelector('#logo');
-                if (logo) logo.remove();
-              }
-            } catch(e) {}
-          };
-          viewer.addEventListener('load', removeLogo);
-          viewer.addEventListener('ready', removeLogo);
-          customElements.whenDefined('spline-viewer').then(removeLogo);
-          setTimeout(removeLogo, 3000);
-        })();
-      </script>
     </section>
 
     <!-- About Me Section -->

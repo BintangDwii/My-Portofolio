@@ -543,6 +543,24 @@
   .faq-question.open + .faq-answer { max-height: 300px; }
   .faq-question.open .faq-icon { transform: rotate(180deg); }
 
+  /* Spline lite: isolasi render agar section di bawah tidak patah */
+  spline-viewer { width: 100%; height: 100%; display: block; transform: translateZ(0); }
+  spline-viewer::part(logo) { display: none !important; }
+  #spline-wrap {
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+    transform: translateZ(0);
+  }
+  #spline-wrap.spline-paused spline-viewer { visibility: hidden; }
+  #spline-wrap.spline-paused { contain: strict; }
+
+  /* Skip render off-screen untuk section berat di bawah spline */
+  #about, #stack, #projects, #faq, #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
   @media (max-width: 768px) {
     .section-heading {
       font-size: 2rem;
@@ -555,5 +573,16 @@
     .stat-number {
       font-size: 1.4rem;
     }
+
+    /* Mobile: matikan animasi float/blur berat dekat spline */
+    .animate-float { animation: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float, .animate-fadeInUp, .animate-scaleIn,
+    .animate-slideLeft, .animate-slideRight, .animate-slideUpFade {
+      animation: none;
+    }
+    .hover-lift:hover { transform: none; }
   }
 }
